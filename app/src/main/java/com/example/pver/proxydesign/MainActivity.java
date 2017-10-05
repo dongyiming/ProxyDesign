@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             reflect();
+//            dynamicProxy();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         Subject targetSubject = new TargetSubject();
         InvocationHandler handler = new DynamicInvocationHandler(targetSubject);
         Log.e("miss08", "开始创建代理类");
-        Subject proxySubject = (Subject) Proxy.newProxyInstance(handler.getClass().getClassLoader()
+        Subject proxySubject = (Subject) Proxy.newProxyInstance(targetSubject.getClass().getClassLoader()
                 , targetSubject.getClass().getInterfaces()
                 , handler);
         Log.e("miss08", "代理类实例创建成功");
